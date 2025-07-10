@@ -1,20 +1,31 @@
 const express = require("express");
-const app = express();
+const server = express();
 const EmailService = require("./services/EmailService");
 const queue = require("./utils/queue");
 
-app.use(express.json());
+server.use(express.json());
 
-app.post("/send-email", async (req, res) => {
+
+server.get('/',(req,resp)=>{
+    resp.send("Welcome to Email-Service");
+})
+
+server.post("/send-email", async (req, res) => {
   const result = await EmailService.send(req.body);
   queue.addJob(req.body);
   res.json(result);
 });
 
-app.get("/:id", (req, res) => {
-  const status = EmailService.getStatus(req.params.id);
-  res.json({ id: req.params.id, status });
+server.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const status = EmailService.getStatus(id);
+
+  if (status === "unknown") {
+    return res.status(404).json({ id, status: "not_found" });
+  }
+
+  res.json({ id, status });
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));
+server.listen(PORT, () => console.log(`Server on http://localhost:${PORT}`));

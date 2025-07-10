@@ -50,6 +50,10 @@ class EmailService {
     return { status: "failed" };
   }
 
+  setStatus(id, status) {
+  emailStatusMap.set(id, status);
+}
+
   getStatus(id) {
     return this.statusMap.get(id) || "unknown";
   }
