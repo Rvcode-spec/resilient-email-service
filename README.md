@@ -17,3 +17,4 @@ git clone https://github.com/Rvcode-spec/resilient-email-service
 cd resilient-email-service
 npm install
 start:- nodemon
+test - npm test
