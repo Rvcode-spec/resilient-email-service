@@ -12,7 +12,7 @@ function wrap(fn) {
     } catch (error) {
       failureCount++;
       if (failureCount >= 3) open = true;
-      throw error;
+      throw erro;
     }
   };
 }

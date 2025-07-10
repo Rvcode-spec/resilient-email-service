@@ -1,5 +1,5 @@
-const Provider1 = require("./Provider1");
-const Provider2 = require("./Provider2");
+const Provider1 = require("../services/Provider1");
+const Provider2 = require("../services/Provider2");
 const circuitBreaker = require("../utils/circuitBreaker");
 const rateLimiter = require("../config/rateLimiter");
 const logger = require("../utils/logger");

@@ -1,5 +1,5 @@
-const EmailService = require("../services/EmailService");
-const rateLimiter = require("../config/rateLimiter"); 
+const EmailService = require("../controller/EmailService");
+const rateLimiter = require("../config/rateLimiter");
 
 afterAll(() => {
   rateLimiter.clear(); // ✅ This stops the interval after tests
